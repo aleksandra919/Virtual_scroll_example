@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import VirtualScroll from './VirtualScroll'
 
-function App() {
+const generateItems = numItems =>
+  Array(numItems)
+    .fill(true)
+    .map(_ => ({
+      key: Math.round(Math.random() * 10),
+      label: Math.random()
+        .toString(36)
+        .substr(2),
+    }));
+
+
+
+const App = () => {
+  console.log('items', generateItems(2))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Test</p>
+      <VirtualScroll
+        itemCount={200}
+        height={300}
+        rowHeight={30}
+        itemData={generateItems(100)}
+      >
+      </VirtualScroll>
     </div>
-  );
+
+  )
 }
 
-export default App;
+export default App
